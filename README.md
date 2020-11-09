@@ -10,11 +10,11 @@ import org.apache.spark.rdd.RDD
  * @create 2020-08-06 15:16
  */
 object Function1Demo2App extends BaseApp{
-  override val outputPath: String = "D:\\code\\_0421\\output"
+  override val outputPath: String = "D:\\code\\output"
 
   def main(args: Array[String]): Unit = {
     runApp{
-      val rdd:RDD[String] = sparkContext.textFile("/D:/code/_0421/input/user_visit_action.txt")
+      val rdd:RDD[String] = sparkContext.textFile("/D:/code/input/user_visit_action.txt")
       val rdd1 = rdd.filter(line=>line.split("_")(5)=="null")
       println("---------一次性封装所有数据-----------")
       val rdd3: RDD[(String, Int, Int, Int)] = rdd1.flatMap(line => {
@@ -54,13 +54,13 @@ import org.apache.spark.rdd.RDD
  * @create 2020-08-06 15:50
  */
 object Function1Demo3App extends BaseApp{
-  override val outputPath: String = "D:\\code\\_0421\\output"
+  override val outputPath: String = "D:\\code\\output"
 
   def main(args: Array[String]): Unit = {
     runApp{
       val acc = new CategoryAcc
       sparkContext.register(acc,"myAcc")
-      val rdd: RDD[String] = sparkContext.textFile("/D:/code/_0421/input/user_visit_action.txt")
+      val rdd: RDD[String] = sparkContext.textFile("/D:/code/input/user_visit_action.txt")
       val rdd1 = rdd.filter(line=>line.split("_")(5)=="null")
        rdd1.foreach(line => {
         val words = line.split("_")
@@ -148,7 +148,7 @@ import org.apache.spark.rdd.RDD
  * @create 2020-08-07 11:09
  */
 object Function3Demo1App extends BaseApp{
-  override val outputPath: String = "D:\\code\\_0421\\output\\Function2Demo1App"
+  override val outputPath: String = "D:\\code\\output\\Function2Demo1App"
 
   def main(args: Array[String]): Unit = {
     runApp {
@@ -188,7 +188,7 @@ object Function3Demo1App extends BaseApp{
 
   }
   def getallBeans():RDD[UserVisitAction]={
-    val rdd = sparkContext.textFile("D:/code/_0421/input/user_visit_action.txt")
+    val rdd = sparkContext.textFile("D:/code/input/user_visit_action.txt")
     val rdd1: RDD[UserVisitAction] = rdd.map(line => {
       val words = line.split("_")
       UserVisitAction(
@@ -259,7 +259,7 @@ object Function3Demo2App extends BaseApp{
    }
   }
   def getallBeans():RDD[UserVisitAction]={
-    val rdd = sparkContext.textFile("D:/code/_0421/input/user_visit_action.txt")
+    val rdd = sparkContext.textFile("D:/code/input/user_visit_action.txt")
     val rdd1: RDD[UserVisitAction] = rdd.map(line => {
       val words = line.split("_")
       UserVisitAction(
@@ -293,11 +293,11 @@ import org.apache.spark.rdd.RDD
  * @create 2020-08-06 14:02
  */
 object FunctionDemo1App extends BaseApp{
-  override val outputPath: String = "D:\\code\\_0421\\output"
+  override val outputPath: String = "D:\\code\\output"
 
   def main(args: Array[String]): Unit = {
     runApp{
-      val rdd:RDD[String] = sparkContext.textFile("/D:/code/_0421/input/user_visit_action.txt")
+      val rdd:RDD[String] = sparkContext.textFile("/D:/code/input/user_visit_action.txt")
       val rdd1 = rdd.filter(line=>line.split("_")(5)=="null")
 
       println("---------------------点击数---------------------")
